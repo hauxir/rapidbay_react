@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SearchScreen from './SearchScreen';
+import SearchResultsScreen from './SearchResultsScreen';
+import TorrentLinkScreen from './TorrentLinkScreen';
+import FileListScreen from './FileListScreen';
+import DownloadScreen from './DownloadScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/search/:searchterm" element={SearchResultsScreen} />
+          <Route path="/torrent/:torrent_link" element={TorrentLinkScreen} />
+          <Route path="/magnet/:magnet_link/:filename" element={DownloadScreen} />
+          <Route path="/magnet/:magnet_link" element={FileListScreen} />
+          <Route path="/" element={SearchScreen} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
